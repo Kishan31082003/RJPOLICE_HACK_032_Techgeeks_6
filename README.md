@@ -135,6 +135,9 @@ GeoCamGuard is equipped with a user-friendly interface that facilitates easy set
 ### Live Footage Display
 - A dedicated frame displays real-time footage of the monitored area, presenting categories and counts of detected objects. This feature enhances situational awareness for effective monitoring.
 
+- ![Screenshot (244)](https://github.com/Kishan31082003/RJPOLICE_HACK_2a390ceff3ec3977ab95c0e77842e27e_Techgeeks_6/assets/109802187/47711dcc-2814-4e34-aa95-af209e47e5ba)
+
+
 
 
 
