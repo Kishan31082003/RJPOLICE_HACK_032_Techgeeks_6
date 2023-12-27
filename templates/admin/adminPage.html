@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        #container {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+    
+            <h2>Choose Your Sign-In Option</h2>
+            <button onclick="signInAsPolice()">Sign In as Police Administrator</button>
+            <button onclick="signInAsCameraOwner()">Sign In as Camera Contributor</button>
+            <button >Create new Account</button>
+    </div>
+
+    <script>
+        function signInAsPolice() {
+            // Redirect or perform actions for Police sign-in
+           // alert("Redirecting to Police Sign-In Page");
+            // Replace the following line with the actual URL for the Police sign-in page
+            window.location.href = "/admin/police";
+        }
+
+        function signInAsCameraOwner() {
+            // Redirect or perform actions for Camera Owner sign-in
+            //alert("Redirecting to Camera Owner Sign-In Page");
+            // Replace the following line with the actual URL for the Camera Owner sign-in page
+            window.location.href = "/admin/cameraOwner";
+        }
+    </script>
+</body>
+
+</html>

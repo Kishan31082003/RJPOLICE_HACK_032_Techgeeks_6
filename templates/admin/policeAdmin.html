@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Police Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet/dist/leaflet.css" />
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        #header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #logo {
+            max-width: 100px;
+            max-height: 100px;
+        }
+
+        #login-container {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            width: 300px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-size: 14px;
+            color: #555;
+            margin-top: 10px;
+            text-align: left;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 3px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        <img id="logo" src=`{{ url_for('static', filename='../../../../logo/logo.png') }}` alt="Logo" />
+        <h2>Police Login</h2>
+    </div>
+    <div id="login-container">
+        <form onsubmit="loginPolice(event)">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/leaflet/dist/leaflet.js"></script>
+    <script>
+        function loginPolice(event) {
+            event.preventDefault();
+
+            // Retrieve values from the form
+            var name = document.getElementById('name').value;
+            var location = document.getElementById('location').value;
+            var password = document.getElementById('password').value;
+
+            // Perform validation and login logic here
+            if (name && location && password) {
+                alert('Police login successful!\nName: ' + name + '\nLocation: ' + location);
+                // Redirect or perform further actions after successful login
+            } else {
+                alert('Please enter valid credentials.');
+            }
+        }
+
+        // Initialize Leaflet map with the OpenMap API for location suggestions
+        var map = L.map('map').setView([0, 0], 1);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenMapTiles'
+        }).addTo(map);
+
+        var locationInput = document.getElementById('location');
+        locationInput.addEventListener('input', function () {
+            var query = locationInput.value;
+
+            // Use OpenMap API to get location suggestions
+            fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${query}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Assume the first result is the best match
+                    if (data && data.length > 0) {
+                        var result = data[0];
+                        var lat = result.lat;
+                        var lon = result.lon;
+                        map.setView([lat, lon], 13);
+                    }
+                })
+                .catch(error => console.error('Error fetching location suggestions:', error));
+        });
+    </script>
+</body>
+
+</html>
