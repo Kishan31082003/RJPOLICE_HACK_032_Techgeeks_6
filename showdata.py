@@ -25,6 +25,13 @@ def admin_cameraOwner():
 def admin_police():
     return render_template('admin/policeAdmin.html')
 
+
+#police 
+@app.route('/police/home')
+def police_home():
+    return render_template('/police/home.html') 
+
+
 @app.route('/your-server-endpoint', methods=['POST'])
 def receive_data():
     try:

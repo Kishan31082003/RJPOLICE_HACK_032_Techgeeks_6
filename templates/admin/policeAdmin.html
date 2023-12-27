@@ -113,6 +113,7 @@
             if (name && location && password) {
                 alert('Police login successful!\nName: ' + name + '\nLocation: ' + location);
                 // Redirect or perform further actions after successful login
+                window.location.href = "/police/home";
             } else {
                 alert('Please enter valid credentials.');
             }
