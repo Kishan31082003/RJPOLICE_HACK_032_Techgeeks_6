@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON Form</title>
+  <style>
+    body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+form {
+  max-width: 600px;
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+
+  </style>
+</head>
+<body>
+
+  <h2>Contributor Details</h2>
+
+  <form id="jsonForm">
+    <label for="name">Organization/Owner Name:</label>
+    <input type="text" id="name" name="name" required><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br>
+
+    <label for="Contact">Contact No.:</label>
+    <input type="number" id="Contact" name="Contact" required><br>
+    
+    <label for="Locality">Locality:</label>
+    <input type="text" id="locality" name="Locality" required><br>
+
+    <label for="Address">Address:</label>
+    <input type="text" id="address" name="Address" required><br>
+
+    <label for="camera">Camera ID:</label>
+    <input type="number" id="camera" name="camera" required><br>
+    
+    <label for="resolution">Resolution:</label>
+    <input type="text" id="resolution" name="resolution" required><br>
+
+    <label for="radius">Camera Radius:</label>
+    <input type="number" id="radius" name="radius" required><br>
+
+    <label for="powerning">Powerning line/Electricity phase:</label>
+    <input type="text" id="powerning" name="powerning" required><br>
+
+    
+
+    <button type="button" onclick="submitForm()">Submit</button>
+  </form>
+
+  <script>
+    function submitForm() {
+      // Get form data
+      var formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        Contact: parseInt(document.getElementById('Contact').value),
+        Locality: document.getElementById('locality').value,
+        Address: document.getElementById('address').value,
+        Camera_ID:parseInt(document.getElementById('camera').value),
+        Resolution: document.getElementById('resolution').value,
+        Radius: parseInt(document.getElementById('radius').value),
+        powerning_line:parseInt(document.getElementById('powerning').value)
+      };
+
+      // Convert form data to JSON
+      var jsonData = JSON.stringify(formData);
+
+      // Send JSON data to the server (replace 'your-server-endpoint' with the actual server endpoint)
+      fetch('your-server-endpoint', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: jsonData
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+        // Handle success response from the server
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        // Handle error
+      });
+    }
+  </script>
+
+</body>
+</html>
