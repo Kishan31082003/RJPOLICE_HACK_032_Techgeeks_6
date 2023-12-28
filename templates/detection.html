@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Object Detection</title>
+    <style>
+        video {
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 20px;
+        }
+
+        #detectedObjects {
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Live Object Detection</h1>
+    <video id="liveVideo" autoplay playsinline></video>
+    <div id="detectedObjects">Detected Objects: </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const video = document.getElementById('liveVideo');
+            const detectedObjectsDiv = document.getElementById('detectedObjects');
+
+            // Request access to the user's camera
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then((stream) => {
+                    video.srcObject = stream;
+                })
+                .catch((error) => {
+                    console.error('Error accessing camera:', error);
+                });
+
+            // Continuously send video frames to the server for object detection
+            const sendVideoFrames = () => {
+                const canvas = document.createElement('canvas');
+                const context = canvas.getContext('2d');
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+
+                context.drawImage(video, 0, 0, canvas.width, canvas.height);
+                const frameData = canvas.toDataURL('image/jpeg', 0.8).split(',')[1];
+
+                // Send the frame data to the server
+                fetch('/detect_objects', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ frameData }),
+                })
+                .then(response => response.json())
+                .then(detectedObjects => {
+                    // Update the detected objects on the HTML page
+                    detectedObjectsDiv.textContent = 'Detected Objects: ' + detectedObjects.join(', ');
+                })
+                .catch(error => console.error('Error processing video frame:', error))
+                .finally(() => {
+                    // Continue processing video frames
+                    requestAnimationFrame(sendVideoFrames);
+                });
+            };
+
+            // Start sending video frames when the video metadata is loaded
+            video.addEventListener('loadedmetadata', () => {
+                sendVideoFrames();
+            });
+        });
+    </script>
+</body>
+
+</html>
