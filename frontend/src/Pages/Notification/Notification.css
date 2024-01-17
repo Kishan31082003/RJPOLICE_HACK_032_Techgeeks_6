@@ -1,0 +1,132 @@
+ body {
+     font-family: Arial, sans-serif;
+     margin: 0;
+     padding: 0;
+ }
+
+ #navbar {
+     background-color: #333;
+     color: #fff;
+     padding: 10px;
+     position: relative;
+ }
+
+ ul {
+     list-style: none;
+     margin: 0;
+     padding: 0;
+     display: flex;
+     justify-content: flex-end;
+ }
+
+ .item {
+     margin-right: 15px;
+ }
+
+ .notification-icon {
+     position: absolute;
+     top: 10px;
+     right: 10px;
+     cursor: pointer;
+ }
+
+ .notification-content {
+     padding: 20px;
+     background-color: #f8f8f8;
+     text-align: center;
+ }
+
+ .row {
+     display: flex;
+     justify-content: space-between;
+     padding: 20px;
+     background-color: #e0e0e0;
+ }
+
+ .buttons {
+     display: flex;
+     justify-content: flex-end;
+ }
+
+ .button {
+     margin-left: 10px;
+     padding: 10px;
+     cursor: pointer;
+     height: fit-content;
+ }
+
+ .button.ignore {
+     background-color: #8b0bd0;
+     height: fit-content;
+ }
+
+ .button.accept {
+     background-color: #d00e21;
+     color: #fff;
+     height: fit-content;
+ }
+
+ .button.detail {
+     background-color: black;
+     color: #fff;
+     height: fit-content;
+ }
+
+ .modal {
+     display: none;
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background-color: rgba(0, 0, 0, 0.5);
+     justify-content: center;
+     align-items: center;
+ }
+
+ .modal-content {
+     background-color: #fff;
+     padding: 20px;
+     border-radius: 5px;
+ }
+
+ .close {
+     cursor: pointer;
+     position: absolute;
+     top: 10px;
+     right: 10px;
+     font-size: 20px;
+ }
+
+ video {
+     width: 100%;
+     height: auto;
+     margin-top: 20px;
+ }
+
+ #customProgressBar {
+     width: 100%;
+     height: 10px;
+     background-color: #ddd;
+     position: absolute;
+     bottom: 5%;
+     cursor: pointer;
+     display: none;
+     /* Initially hidden */
+ }
+
+ #progress {
+     height: 100%;
+     width: 0;
+     background-color: #4CAF50;
+ }
+
+ #marker {
+     height: 100%;
+     width: 17rem;
+     background-color: red;
+     position: absolute;
+     top: 0;
+
+     z-index: 1;
+ }
