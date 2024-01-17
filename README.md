@@ -19,6 +19,11 @@ GeoCamGuard is a user-friendly geo-tagging system designed to enhance law enforc
 ### Live Location Access
 - Shares real-time geo-location with distance and time for swift response.
 
+### Camera Tampering
+- Generates error into major two domains of camera tampering
+- 1. CAMERA OCULSION: Generates Alerts when camera view is hindered by an opaque object-substance.
+  2. CAMERA MOTION: Generate alerts when the direction of the camera is change.
+      
 ### Highlighted Timestamp Alerts
 - Anomaly frames are highlighted with timestamps for easy evidence access.
 
